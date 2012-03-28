@@ -8,13 +8,20 @@ module Voting
     default_format :json
 
     resource :status do
-      get '/ping' do
+      get 'ping' do
         {:status => 'ok', :data => 'pong'}
       end
     end
 
     resource :voting do
-      post '/vote_for/:candidate' do
+      get 'votes' do
+        {
+          :status => 'ok',
+          :data => $redis.hgetall('candidate_votes')
+        }
+      end
+
+      put 'vote_for/:candidate' do
         {
           :status => 'ok', 
           :data => {
@@ -24,7 +31,7 @@ module Voting
         }
       end
 
-      post '/unvote_for/:candidate' do
+      put 'unvote_for/:candidate' do
         {
           :status => 'ok', 
           :data => {
