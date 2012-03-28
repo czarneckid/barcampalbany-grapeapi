@@ -23,6 +23,16 @@ module Voting
           }
         }
       end
+
+      post '/unvote_for/:candidate' do
+        {
+          :status => 'ok', 
+          :data => {
+            :candidate => params[:candidate],
+            :votes => $redis.hincrby('candidate_votes', params[:candidate], -1)
+          }
+        }
+      end
     end
   end
 end

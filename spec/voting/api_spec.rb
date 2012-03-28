@@ -25,4 +25,16 @@ describe 'Voting::API' do
       end
     end
   end
+
+  describe '/voting/unvote_for' do
+    it 'should allow me to rescind my vote for a given candidate' do
+      post '/api/v1/voting/unvote_for/david'
+      last_response.status.should be(201)
+
+      JSON.parse(last_response.body).tap do |parsed_json|
+        parsed_json['data']['votes'].should be(-1)
+        parsed_json['data']['candidate'].should == 'david'
+      end
+    end
+  end
 end
