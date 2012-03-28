@@ -3,6 +3,7 @@ source :rubygems
 # Server
 gem 'grape', :git => 'git://github.com/intridea/grape.git', :branch => 'frontier'
 gem 'redis', '2.2.2'
+gem 'unicorn', '4.2.0'
 
 group :development do
   gem 'heroku'
