@@ -14,13 +14,6 @@ module Voting
     end
 
     resource :voting do
-      get 'votes' do
-        {
-          :status => 'ok',
-          :data => $redis.hgetall('candidate_votes')
-        }
-      end
-
       put 'vote_for/:candidate' do
         {
           :status => 'ok', 
@@ -38,6 +31,13 @@ module Voting
             :candidate => params[:candidate],
             :votes => $redis.hincrby('candidate_votes', params[:candidate], -1)
           }
+        }
+      end
+
+      get 'votes' do
+        {
+          :status => 'ok',
+          :data => $redis.hgetall('candidate_votes')
         }
       end
     end
