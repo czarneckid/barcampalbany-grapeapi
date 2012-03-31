@@ -5,13 +5,15 @@ describe 'Voting::API' do
   def app
     Voting::API
   end
-  
-  describe '/status/ping' do
-    it 'should respond with pong' do
-      get '/api/v1/status/ping'
-      last_response.should be_ok
-      JSON.parse(last_response.body).tap do |parsed_json|
-        parsed_json['data'].should == 'pong'
+
+  describe 'status' do
+    describe '#ping' do  
+      it 'should respond with pong' do
+        get '/api/v1/status/ping'
+        last_response.should be_ok
+        JSON.parse(last_response.body).tap do |parsed_json|
+          parsed_json['data'].should == 'pong'
+        end
       end
     end
   end
