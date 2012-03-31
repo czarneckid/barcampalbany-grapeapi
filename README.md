@@ -1,5 +1,8 @@
 # APIs in Ruby with Grape
 
+A sample API in Ruby using the [https://github.com/intridea/grape](Grape) framework that was TDD'd at 
+BarCamp Albany on March 31, 2012.
+
 ## Installation and Setup
 
 ```
